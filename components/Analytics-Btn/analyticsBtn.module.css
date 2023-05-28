@@ -1,0 +1,8 @@
+.button {
+	width: 450px;
+	margin: 2rem;
+}
+
+.button span:nth-last-child(1) {
+	font-weight: bold;
+}

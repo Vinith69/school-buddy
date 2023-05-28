@@ -14,10 +14,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import CustomListItem from "./List-Item/CustomListItem";
 
 const drawerWidth = 240;
 
@@ -66,7 +64,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 	justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({ title = "Home" }) {
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 
@@ -93,7 +91,7 @@ export default function PersistentDrawerLeft() {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" noWrap component="div">
-						Home
+						{title}
 					</Typography>
 				</Toolbar>
 			</AppBar>
@@ -121,41 +119,19 @@ export default function PersistentDrawerLeft() {
 				</DrawerHeader>
 				<Divider />
 				<List>
-					<ListItem>
-						<ListItemButton>
-							<ListItemIcon>
-								<MailIcon />
-							</ListItemIcon>
-							<ListItemText primary="Analytics" />
-						</ListItemButton>
-					</ListItem>
-					<ListItem>
-						<ListItemButton>
-							<ListItemIcon>
-								<MailIcon />
-							</ListItemIcon>
-							<ListItemText primary="Link Generator" />
-						</ListItemButton>
-					</ListItem>
-					<ListItem>
-						<ListItemButton>
-							<ListItemIcon>
-								<MailIcon />
-							</ListItemIcon>
-							<ListItemText primary="Invoice Generator" />
-						</ListItemButton>
-					</ListItem>
-					<ListItem>
-						<ListItemButton>
-							<ListItemIcon>
-								<MailIcon />
-							</ListItemIcon>
-							<ListItemText primary="Support" />
-						</ListItemButton>
-					</ListItem>
-					<br />
+					<CustomListItem text="Analytics" />
+					<CustomListItem
+						text="Link Generator"
+						path="/link-generator"
+					/>
+					<CustomListItem
+						text="Invoice Generator"
+						path="/invoice-generator"
+					/>
+					<CustomListItem text="Support" path="/support" />
 					<br />
 					<Divider />
+					<br />
 					<ListItem>
 						<ListItemButton
 							style={{
