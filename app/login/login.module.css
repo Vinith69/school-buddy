@@ -1,0 +1,32 @@
+.main {
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+}
+.main h2 {
+	margin: 2rem 2rem;
+	font-size: 3rem;
+}
+
+.textBox {
+	width: 500px;
+	margin: 2rem;
+}
+
+.button {
+	width: 500px;
+	margin: 2rem;
+}
+
+.forgotPassword {
+	align-self: flex-start;
+	list-style: none;
+	margin-left: 2rem;
+}
+.forgotPassword a {
+	color: #2d509b;
+}
+.forgotPassword:hover a {
+	color: #1356e6;
+}
