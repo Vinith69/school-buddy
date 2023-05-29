@@ -1,0 +1,35 @@
+.main {
+	display: flex;
+	height: 85vh;
+	justify-content: center;
+	align-items: center;
+}
+
+.button {
+	width: 300px;
+	margin: 2rem;
+}
+
+.linkGeneratorContainer {
+	display: flex;
+	flex-direction: column;
+	margin-right: 5rem;
+	align-items: flex-start;
+}
+
+.avatarContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.avatar {
+	width: 20vw;
+	height: 20vw;
+}
+
+@media screen and (max-width: 1000px) {
+	.avatar {
+		width: 30vw;
+		height: 30vw;
+	}
+}
