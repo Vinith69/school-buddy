@@ -3,12 +3,7 @@ import TextField from "@mui/material/TextField";
 import styles from "./lgTextField.module.css";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import { Button, Typography } from "@mui/material";
-import {
-	Dialog,
-	DialogTitle,
-	DialogContent,
-	DialogActions,
-} from "@mui/material";
+import { Dialog, DialogContent, DialogActions } from "@mui/material";
 
 import { useState, useRef } from "react";
 
@@ -20,7 +15,6 @@ function TextFieldWithUploadButton({
 	const [open, setOpen] = useState(false);
 	const [selectedFile, setSelectedFile] = useState(null);
 	const fileInputRef = useRef(null);
-	const [uploadedFileName, setUploadedFileName] = useState("");
 
 	const handleUploadButtonClick = () => {
 		setOpen(true);
@@ -31,6 +25,7 @@ function TextFieldWithUploadButton({
 	};
 
 	const handleFileChange = (event) => {
+		event.preventDefault();
 		const file = event.target.files[0];
 		if (file) {
 			// Validate file type
@@ -50,21 +45,12 @@ function TextFieldWithUploadButton({
 			}
 
 			setSelectedFile(file);
-			setUploadedFileName(file.name);
-		} else {
-			setSelectedFile(null);
-			setUploadedFileName("");
 		}
+		setOpen(false);
 	};
 
 	const handleUpload = () => {
-		if (fileInputRef.current) {
-			fileInputRef.current.click();
-		}
-		if (selectedFile) {
-			// setUploadedFileName(selectedFile.name);
-			setOpen(false);
-		}
+		fileInputRef.current.click();
 	};
 
 	return (
@@ -74,7 +60,8 @@ function TextFieldWithUploadButton({
 				placeholder={placeholder}
 				variant="outlined"
 				fullWidth
-				value={uploadedFileName}
+				aria-readonly
+				value={selectedFile ? selectedFile.name : ""}
 				InputProps={{
 					startAdornment: (
 						<InputAdornment position="start">
@@ -100,6 +87,13 @@ function TextFieldWithUploadButton({
 					),
 				}}
 			/>
+			<input
+				type="file"
+				accept="image/jpeg, image/png, image/svg+xml"
+				onChange={handleFileChange}
+				style={{ display: "none" }}
+				ref={fileInputRef}
+			/>
 			{/* Dialog___________________________________ */}
 			<Dialog open={open} onClose={handleClose}>
 				<DialogContent
@@ -118,16 +112,9 @@ function TextFieldWithUploadButton({
 					<Typography variant="subtitle1">
 						Max limit: 10 MB
 					</Typography>
-					<input
-						type="file"
-						accept="image/jpeg, image/png, image/svg+xml"
-						onChange={(e) => {
-							handleFileChange(e);
-							// handleClose();
-						}}
-						style={{ display: "none" }}
-						ref={fileInputRef}
-					/>
+					<Typography variant="subtitle1">
+						{selectedFile ? selectedFile.name : ""}
+					</Typography>
 				</DialogContent>
 				<DialogActions
 					sx={{
