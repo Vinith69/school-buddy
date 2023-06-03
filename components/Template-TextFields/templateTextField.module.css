@@ -1,0 +1,13 @@
+.textContainer {
+	width: 580px;
+	margin: 2rem;
+}
+
+.multiline {
+	height: 120px;
+}
+
+.textFieldInput ::placeholder {
+	text-align: top; /* Adjust the alignment as needed */
+	padding-top: 1.4rem; /* Adjust the padding-top to align the placeholder */
+}
