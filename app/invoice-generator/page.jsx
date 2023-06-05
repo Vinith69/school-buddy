@@ -12,6 +12,9 @@ function InvoiceGenerator() {
 	const handleHistoryClick = () => {
 		push("/invoice-generator/history");
 	};
+	const handlePredefinedClick = () => {
+		push("/invoice-generator/predefined");
+	};
 	return (
 		<div>
 			<Navbar title="Invoice Generator" />
@@ -23,8 +26,9 @@ function InvoiceGenerator() {
 							description="Create a new invoice"
 						/>
 						<CustomCard
-							title="Create New"
+							title="Predefined"
 							description="Create a new invoice"
+							handleOpen={handlePredefinedClick}
 						/>
 					</div>
 					<div className={styles.row}>
